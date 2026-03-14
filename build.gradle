@@ -35,6 +35,9 @@ dependencies {
     // Sa-Token 权限认证，在线文档：https://sa-token.cc
     implementation 'cn.dev33:sa-token-spring-boot4-starter:1.45.0'
 
+    // MyBatis-Plus https://baomidou.com/introduce/
+    implementation 'com.baomidou:mybatis-plus-spring-boot4-starter:3.5.15'
+
 }
 
 tasks.named('test') {

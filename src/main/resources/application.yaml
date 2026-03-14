@@ -1,6 +1,9 @@
 spring:
   application:
     name: FluxChat
+  config:
+    # Optional local overrides. Create src/main/resources/application-local.yaml from template.
+    import: optional:classpath:application-local.yaml
 
 
 server:
