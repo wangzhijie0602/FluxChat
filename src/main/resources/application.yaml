@@ -33,3 +33,8 @@ mybatis-plus:
       logic-delete-field: is_deleted
       logic-delete-value: 1 # 逻辑已删除值。可选，默认值为 1
       logic-not-delete-value: 0 # 逻辑未删除值。可选，默认值为 0
+
+app:
+  cors:
+    # 逗号分隔，支持通配符模式（如 https://*.example.com）
+    allowed-origin-patterns: http://localhost:5173,http://127.0.0.1:5173
