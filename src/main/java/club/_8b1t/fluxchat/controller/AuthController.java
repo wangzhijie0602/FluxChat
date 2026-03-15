@@ -1,12 +1,13 @@
 package club._8b1t.fluxchat.controller;
 
 import club._8b1t.fluxchat.common.Result;
+import club._8b1t.fluxchat.dto.auth.LoginRequest;
+import club._8b1t.fluxchat.dto.auth.LoginResponse;
+import club._8b1t.fluxchat.dto.auth.RegisterRequest;
+import club._8b1t.fluxchat.dto.auth.UserProfile;
 import club._8b1t.fluxchat.model.User;
 import club._8b1t.fluxchat.service.UserService;
-import cn.dev33.satoken.stp.SaTokenInfo;
 import cn.dev33.satoken.stp.StpUtil;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -51,38 +52,5 @@ public class AuthController {
         StpUtil.login(user.getId());
         LoginResponse response = new LoginResponse(StpUtil.getTokenInfo(), UserProfile.from(user));
         return Result.success("登录成功", response);
-    }
-
-    @Data
-    private static class RegisterRequest {
-        private String username;
-        private String email;
-        private String password;
-        private String confirmPassword;
-    }
-
-    @Data
-    private static class LoginRequest {
-        private String account;
-        private String password;
-    }
-
-    @Data
-    @AllArgsConstructor
-    private static class LoginResponse {
-        private SaTokenInfo tokenInfo;
-        private UserProfile user;
-    }
-
-    @Data
-    @AllArgsConstructor
-    private static class UserProfile {
-        private Long id;
-        private String username;
-        private String email;
-
-        private static UserProfile from(User user) {
-            return new UserProfile(user.getId(), user.getUsername(), user.getEmail());
-        }
     }
 }
