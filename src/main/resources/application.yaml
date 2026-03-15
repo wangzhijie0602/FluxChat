@@ -26,3 +26,10 @@ sa-token:
   token-style: simple-uuid
   # 是否输出操作日志
   is-log: true
+
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: is_deleted
+      logic-delete-value: 1 # 逻辑已删除值。可选，默认值为 1
+      logic-not-delete-value: 0 # 逻辑未删除值。可选，默认值为 0
