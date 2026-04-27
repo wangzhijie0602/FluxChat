@@ -14,6 +14,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Authentication APIs
+ * 处理用户注册与登录请求，返回统一响应结构。
+ *
+ * @module Authentication
+ */
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
@@ -22,11 +28,11 @@ public class AuthController {
     private final UserService userService;
 
     /**
-     * 用户注册
-     * 创建新用户账号并返回用户基础信息。
+     * Register Account
+     * 创建新用户账号，注册成功后返回用户资料。
      *
-     * @param request 注册请求体，包含用户名、邮箱、密码与确认密码
-     * @return 注册结果，成功时返回用户资料
+     * @param request 注册请求参数，详见{@link RegisterRequest}
+     * @return 注册结果，data 为用户资料{@link UserProfile}
      */
     @PostMapping("/register")
     public Result<UserProfile> register(@RequestBody RegisterRequest request) {
@@ -40,11 +46,11 @@ public class AuthController {
     }
 
     /**
-     * 用户登录
-     * 使用账号与密码进行身份认证，认证通过后签发登录 Token。
+     * Login
+     * 使用账号与密码进行认证，认证通过后签发 Token 并返回当前用户资料。
      *
-     * @param request 登录请求体，包含账号（用户名或邮箱）与密码
-     * @return 登录结果，成功时返回 Token 信息与用户资料
+     * @param request 登录请求参数，详见{@link LoginRequest}
+     * @return 登录结果，data 为登录信息{@link LoginResponse}
      */
     @PostMapping("/login")
     public Result<LoginResponse> login(@RequestBody LoginRequest request) {
